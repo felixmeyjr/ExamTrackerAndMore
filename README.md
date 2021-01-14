@@ -1,4 +1,12 @@
 # ExamTrackerAndMore
 
 TODO:
-Create proper main page
+MAIN PAGE:
+
+
+ADD EXAM CONTEXT WINDOW
+
+LATER:
+
+
+

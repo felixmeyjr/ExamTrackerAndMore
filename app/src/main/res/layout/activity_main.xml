@@ -42,18 +42,21 @@
         android:id="@+id/CurrentDatetextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Datum:"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="68dp" />
+        android:text="Heutiges Datum:"
+        app:layout_constraintBottom_toTopOf="@+id/currentDateTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <TextView
+        android:id="@+id/currentDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="55dp" />
+        android:layout_marginBottom="550dp"
+        android:text="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
