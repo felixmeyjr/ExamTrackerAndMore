@@ -38,4 +38,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ExamDateText" />
 
+    <TextView
+        android:id="@+id/CurrentDatetextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datum:"
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="55dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
