@@ -1,6 +1,7 @@
 package com.example.examtrackerandmore
 
 import android.os.Build
+import android.text.Editable
 import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -14,10 +15,9 @@ fun currentDate(): String? {
     val current = LocalDateTime.now()
 
     // Format
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
-    val formatted = current.format(formatter)
+    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 
-    return formatted
+    return current.format(formatter)
 }
 
 fun main() {
