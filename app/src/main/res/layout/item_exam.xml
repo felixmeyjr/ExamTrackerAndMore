@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <!--todo change to EditText -->
+    <TextView
+        android:id="@+id/text_days_to_exam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_launcher_background"
+        android:gravity="center"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+
+        tools:text="8" />
+
+    <TextView
+        android:id="@+id/text_exam_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text_days_to_exam"
+        android:layout_alignBottom="@id/text_days_to_exam"
+        android:layout_toEndOf="@id/text_days_to_exam"
+        android:layout_toRightOf="@id/text_days_to_exam"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+
+        tools:text="Exam Name" />
+
+    <TextView
+        android:id="@+id/text_no_lecs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text_days_to_exam"
+        android:layout_alignBottom="@id/text_days_to_exam"
+        android:layout_toStartOf="@id/text_no_tuts"
+        android:layout_toLeftOf="@id/text_no_tuts"
+        android:layout_toRightOf="@id/text_exam_name"
+        android:gravity="center_vertical"
+
+        android:maxLines="1"
+        tools:text="8" />
+
+    <TextView
+        android:id="@+id/text_no_tuts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text_days_to_exam"
+        android:layout_alignBottom="@id/text_days_to_exam"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+
+        android:maxLines="1"
+        tools:text="12" />
+
+</RelativeLayout>
