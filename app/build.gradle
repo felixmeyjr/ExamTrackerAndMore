@@ -11,8 +11,7 @@ plugins {
 android {
     compileSdkVersion rootProject.compileSdkVersion
     //compileSdkVersion 30
-    //buildToolsVersion "30.0.3" // todo different build version
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3" // todo different build version
 
     defaultConfig {
         applicationId "com.example.examtrackerandmore"
