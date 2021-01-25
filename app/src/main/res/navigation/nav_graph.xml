@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/examsFragment">
+
+    <fragment
+        android:id="@+id/examsFragment"
+        android:name="com.example.examtrackerandmore.UI.exams.ExamsFragment"
+        android:label="fragment_exams_overview"
+        tools:layout="@layout/fragment_exams_overview" />
+</navigation>
