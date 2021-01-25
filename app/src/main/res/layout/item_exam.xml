@@ -8,14 +8,13 @@
     <!--todo change to EditText -->
     <TextView
         android:id="@+id/text_days_to_exam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_launcher_background"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@mipmap/ic_launcher_background"
         android:gravity="center"
         android:minWidth="0dp"
         android:minHeight="0dp"
-
-        tools:text="8" />
+        tools:text="days" />
 
     <TextView
         android:id="@+id/text_exam_name"
@@ -24,12 +23,14 @@
         android:layout_alignTop="@id/text_days_to_exam"
         android:layout_alignBottom="@id/text_days_to_exam"
         android:layout_toEndOf="@id/text_days_to_exam"
+        android:layout_toStartOf="@+id/text_no_lecs"
         android:layout_toRightOf="@id/text_days_to_exam"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
-
-        tools:text="Exam Name" />
+        android:padding="8dp"
+        tools:text="Exam Name"
+        android:layout_toLeftOf="@+id/text_no_lecs" />
 
     <TextView
         android:id="@+id/text_no_lecs"
@@ -41,9 +42,9 @@
         android:layout_toLeftOf="@id/text_no_tuts"
         android:layout_toRightOf="@id/text_exam_name"
         android:gravity="center_vertical"
-
         android:maxLines="1"
-        tools:text="8" />
+        android:padding="8dp"
+        tools:text="num lecs" />
 
     <TextView
         android:id="@+id/text_no_tuts"
@@ -54,8 +55,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
-
         android:maxLines="1"
-        tools:text="12" />
+        android:padding="8dp"
+        tools:text="num tuts" />
 
 </RelativeLayout>
