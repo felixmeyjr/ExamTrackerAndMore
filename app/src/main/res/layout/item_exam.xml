@@ -59,4 +59,7 @@
         android:padding="8dp"
         tools:text="num tuts" />
 
+    <!-- add progress bar -->
+
+
 </RelativeLayout>
