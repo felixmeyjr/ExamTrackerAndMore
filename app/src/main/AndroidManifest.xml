@@ -3,14 +3,13 @@
     package="com.example.examtrackerandmore">
 
     <application
+        android:name=".ExamApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExamTrackerAndMore">
-        <activity android:name=".ExamOverviewActivity"></activity>
-        <activity android:name=".AddExamButtonActivity" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

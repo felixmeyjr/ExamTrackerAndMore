@@ -11,9 +11,9 @@ import java.util.*
 
 @Entity(tableName = "exam_table") // necessary for the sqlite room package
 @Parcelize // parcelize is necessary to send data between fragments
-data class exam(
+data class Exam(
     val name: String,
-    val date: Date,
+    val date: String,
     val no_lecs: Int,
     val no_tuts: Int,
     // todo relative values etc
