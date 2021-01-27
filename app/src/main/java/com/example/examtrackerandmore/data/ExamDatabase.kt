@@ -35,8 +35,24 @@ abstract class ExamDatabase : RoomDatabase() {
 
             // create own coroutine scope and add example items
             applicationScope.launch {
-                dao.insert(Exam("Elektrotechnik 1", "2021-03-31", 12, 10))
-                dao.insert(Exam("BWL 4", "2021-04-15", 8, 1))
+                dao.insert(Exam(
+                    "Elektrotechnik 1",
+                    "2021-03-31",
+                    12,
+                    15,
+                    5))
+                dao.insert(Exam(
+                    "BWL 4",
+                    "2021-04-15",
+                    8,
+                    1,
+                    9))
+                dao.insert(Exam(
+                    "TM 2",
+                    "2021-04-30",
+                    2,
+                    3,
+                    4))
             }
 
 

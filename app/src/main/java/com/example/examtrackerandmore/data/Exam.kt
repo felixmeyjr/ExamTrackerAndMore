@@ -14,9 +14,11 @@ import java.util.*
 data class Exam(
     val name: String,
     val date: String,
+    val daysLeft: Int,
     val no_lecs: Int,
     val no_tuts: Int,
     // todo relative values etc
+    // todo add visibility bool
 
     @PrimaryKey(autoGenerate = true) val id: Int = 0 // necessary for the sqlite room package
 ) : Parcelable {
