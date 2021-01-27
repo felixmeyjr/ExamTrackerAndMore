@@ -46,10 +46,10 @@
         android:layout_alignLeft="@id/text_exam_name"
         android:indeterminate="false"
         android:max="100"
-        android:minWidth="176dp"
+        android:minWidth="120dp"
         android:minHeight="9dp"
-        android:progress="30"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:progress="30" />
 
 
     <TextView
@@ -72,12 +72,29 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/text_days_to_exam"
         android:layout_alignBottom="@id/text_days_to_exam"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/specific_settings"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:padding="8dp"
         tools:text="num tuts" />
+
+
+    <!-- Which Button?
+    <Button
+    android:src="@drawable/ic_specific_settings"
+    android:background="@drawable/ic_specific_settings"
+    oder so: -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/specific_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text_days_to_exam"
+        android:layout_alignBottom="@id/text_days_to_exam"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_specific_settings" />
 
 
 </RelativeLayout>
