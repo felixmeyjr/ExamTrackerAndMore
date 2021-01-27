@@ -32,6 +32,8 @@
         tools:text="Exam Name"
         android:layout_toLeftOf="@+id/text_no_lecs" />
 
+    <!-- todo: adding progess bar under exam name -->
+
     <TextView
         android:id="@+id/text_no_lecs"
         android:layout_width="wrap_content"
@@ -58,8 +60,6 @@
         android:maxLines="1"
         android:padding="8dp"
         tools:text="num tuts" />
-
-    <!-- add progress bar -->
 
 
 </RelativeLayout>
