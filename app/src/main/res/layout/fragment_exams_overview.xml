@@ -6,7 +6,7 @@
     tools:context=".UI.exams.ExamsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reclyer_view_exams"
+        android:id="@+id/recycler_view_exams"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
