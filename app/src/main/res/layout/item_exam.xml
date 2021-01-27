@@ -21,18 +21,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/text_days_to_exam"
-        android:layout_alignBottom="@id/text_days_to_exam"
+        android:layout_toStartOf="@id/text_no_lecs"
+        android:layout_toLeftOf="@id/text_no_lecs"
         android:layout_toEndOf="@id/text_days_to_exam"
-        android:layout_toStartOf="@+id/text_no_lecs"
         android:layout_toRightOf="@id/text_days_to_exam"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:padding="8dp"
-        tools:text="Exam Name"
-        android:layout_toLeftOf="@+id/text_no_lecs" />
+        tools:text="Exam Name" />
+    <!-- ohne alignbottom verschiebt sich exam name nach oben -->
 
-    <!-- todo: adding progess bar under exam name -->
+    <!-- progess bar
+     fixing relation to the buttom edge of id days to exam
+     fixing width to relative value
+     constant height okay? Because circle size is fix -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_exam_name"
+        android:layout_alignStart="@id/text_exam_name"
+        android:layout_alignLeft="@id/text_exam_name"
+        android:indeterminate="false"
+        android:max="100"
+        android:minWidth="176dp"
+        android:minHeight="9dp"
+        android:progress="30"
+        android:padding="8dp"/>
+
 
     <TextView
         android:id="@+id/text_no_lecs"
