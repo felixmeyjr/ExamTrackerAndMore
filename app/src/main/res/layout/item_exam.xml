@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <!--todo change to EditText -->
     <TextView
         android:id="@+id/text_days_to_exam"
         android:layout_width="60dp"

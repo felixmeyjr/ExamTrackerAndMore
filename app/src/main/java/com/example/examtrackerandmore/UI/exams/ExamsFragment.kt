@@ -1,6 +1,8 @@
 package com.example.examtrackerandmore.UI.exams
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,19 +26,34 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview) {
 
         val binding = FragmentExamsOverviewBinding.bind(view)
 
+        // examAdapter: create one object as fragment todo ?
         val examAdapter = ExamsAdapter()
 
         binding.apply {
             recyclerViewExams.apply {
                 adapter = examAdapter
+
+
                 // how to manage items on screen (horizonzal, vertical...)
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
+
             }
         }
 
         viewModel.exams.observe(viewLifecycleOwner) {
+            // always sort items by days left to exam
+
+
             examAdapter.submitList(it)
         }
+
+        // Activate options menu when creating
+        setHasOptionsMenu(true)
+    }
+
+    // Connect menu fragment with oncreate
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_fragment_exams, menu)
     }
 }

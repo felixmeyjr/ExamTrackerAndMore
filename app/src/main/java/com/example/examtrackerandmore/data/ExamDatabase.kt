@@ -22,6 +22,7 @@ abstract class ExamDatabase : RoomDatabase() {
         @ApplicationScope private val applicationScope: CoroutineScope //make code more clear
     ) : RoomDatabase.Callback() {
 
+        // Create a database when starting the app
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
 
