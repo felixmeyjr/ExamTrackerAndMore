@@ -8,6 +8,24 @@
     <fragment
         android:id="@+id/examsFragment"
         android:name="com.example.examtrackerandmore.UI.exams.ExamsFragment"
-        android:label="fragment_exams_overview"
-        tools:layout="@layout/fragment_exams_overview" />
+        android:label="Exams"
+        tools:layout="@layout/fragment_exams_overview">
+        <action
+            android:id="@+id/action_examsFragment_to_addEditExamFragment"
+            app:destination="@id/addEditExamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditExamFragment"
+        android:name="com.example.examtrackerandmore.UI.addeditexam.AddEditExamFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_edit_exam" >
+        <argument
+            android:name="exam"
+            app:argType="com.example.examtrackerandmore.data.Exam"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>

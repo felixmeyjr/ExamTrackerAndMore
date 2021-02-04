@@ -8,10 +8,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.examtrackerandmore.R
+import com.example.examtrackerandmore.UI.util.exhaustive
 import com.example.examtrackerandmore.data.Exam
 import com.example.examtrackerandmore.databinding.FragmentExamsOverviewBinding
 import com.google.android.material.snackbar.Snackbar
@@ -25,7 +27,7 @@ import kotlinx.coroutines.launch
 // TODO: 27.01.2021 add documentation of #5 
 
 @AndroidEntryPoint
-class ExamsFragment : Fragment(R.layout.fragment_exams_overview) {
+class ExamsFragment : Fragment(R.layout.fragment_exams_overview), ExamsAdapter.OnItemClickListener {
 
     private val viewModel: ExamViewModel by viewModels()
 
@@ -35,12 +37,11 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview) {
         val binding = FragmentExamsOverviewBinding.bind(view)
 
         // examAdapter: create one object as fragment todo ?
-        val examAdapter = ExamsAdapter()
+        val examAdapter = ExamsAdapter(this)
 
         binding.apply {
             recyclerViewExams.apply {
                 adapter = examAdapter
-
 
                 // how to manage items on screen (horizontal, vertical...)
                 layoutManager = LinearLayoutManager(requireContext())
@@ -51,8 +52,7 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview) {
                 // SwipeDirs: Left and right (delete for example)
                 ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
                     0,
-                    ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-                ) {
+                    ItemTouchHelper.RIGHT) {
                     override fun onMove(
                         recyclerView: RecyclerView,
                         viewHolder: RecyclerView.ViewHolder,
@@ -68,23 +68,27 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview) {
                         viewModel.onExamSwiped(exam)
                     }
                 }).attachToRecyclerView(recyclerViewExams)
+
+                fabAddExam.setOnClickListener {
+                    // Click behaviour could be defined here, but the viewmodel should do it, because
+                    // better seperation of concerns
+                    viewModel.onAddNewExamClick()
+                }
             }
         }
 
         viewModel.exams.observe(viewLifecycleOwner) {
             // always sort items by days left to exam
-
-
             examAdapter.submitList(it)
         }
 
-        // Flow can only be selected from Coroutine -> dont block UI thread
+        // Flow can only be selected from Coroutine -> don't block UI thread
         // Can be done way more easier -> Handling in fragment
         // Show snackbar with UNDO option on UI
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.examsEvent.collect { event ->
                 // Get stream of values: examsEventObject
-                when(event) {
+                when (event) {
                     is ExamViewModel.ExamsEvent.ShowUndoDeleteExamMessage -> {
                         Snackbar.make(requireView(), "Exam deleted", Snackbar.LENGTH_LONG)
                             .setAction("UNDO") {
@@ -92,12 +96,33 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview) {
                                 viewModel.onUndoDeleteClick(event.exam)
                             }.show()
                     }
-                }
+                    is ExamViewModel.ExamsEvent.NavigateToAddExamScreen -> {
+                        val action =
+                            ExamsFragmentDirections.actionExamsFragmentToAddEditExamFragment(
+                                null,
+                                "New Exam"
+                            )
+                        findNavController().navigate(action)
+                    }
+                    is ExamViewModel.ExamsEvent.NavigateToEditExamScreen -> {
+                        val action =
+                            ExamsFragmentDirections.actionExamsFragmentToAddEditExamFragment(
+                                event.exam,
+                                "Edit Exam"
+                            )
+                        findNavController().navigate(action)
+                    }
+                }.exhaustive
             }
         }
 
         // Activate options menu when creating
         setHasOptionsMenu(true)
+    }
+
+    
+    override fun onItemClick(exam: Exam) {
+        viewModel.onExamSelected(exam)  
     }
 
     // Connect menu fragment with on create

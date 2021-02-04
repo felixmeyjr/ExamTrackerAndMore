@@ -1,6 +1,8 @@
 package com.example.examtrackerandmore.UI.exams
 
+import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -18,7 +20,8 @@ import kotlinx.coroutines.launch
 
 class ExamViewModel @ViewModelInject constructor(
     private val examDataAccessObject: ExamDataAccessObject,
-    private val preferencesManager: PreferencesManager
+    private val preferencesManager: PreferencesManager,
+    @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
 
     val exams = examDataAccessObject.getExams().asLiveData() // liveData: ?
@@ -32,6 +35,10 @@ class ExamViewModel @ViewModelInject constructor(
     // Updating the preference here
     fun onHideCompletedClick(hideCompleted: Boolean) = viewModelScope.launch {
         preferencesManager.updateHideCompleted(hideCompleted)
+    }
+
+    fun onExamSelected(exam: Exam) = viewModelScope.launch{
+        examsEventChannel.send(ExamsEvent.NavigateToEditExamScreen(exam))
     }
 
     // Swipe to delete
@@ -48,8 +55,16 @@ class ExamViewModel @ViewModelInject constructor(
         examDataAccessObject.insert(exam)
     }
 
+    // Click of add exam fab
+    fun onAddNewExamClick() = viewModelScope.launch {
+        // viewmodel tells ui what to do
+        examsEventChannel.send(ExamsEvent.NavigateToAddExamScreen)
+    }
+
     // Handle events for fragments (snackbar related); Belongs to ExamFragment, ExamEvent and ExamViewModel
     sealed class ExamsEvent {
+        object NavigateToAddExamScreen : ExamsEvent()
+        data class NavigateToEditExamScreen(val exam: Exam) : ExamsEvent()
         data class ShowUndoDeleteExamMessage(val exam: Exam) : ExamsEvent() // best practice to do this like this
 
     }

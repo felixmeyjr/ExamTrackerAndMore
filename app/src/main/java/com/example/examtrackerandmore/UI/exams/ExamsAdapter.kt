@@ -2,6 +2,7 @@ package com.example.examtrackerandmore.UI.exams
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,10 +11,10 @@ import com.example.examtrackerandmore.databinding.ItemExamBinding
 
 // TODO: 27.01.2021 what does this do? #5
 // extend ListAdapter (extension of Reclycer view)
-class ExamsAdapter : ListAdapter<Exam, ExamsAdapter.ExamsViewHolder>(DiffCallback()) {
+class ExamsAdapter(private val listener: OnItemClickListener) : ListAdapter<Exam, ExamsAdapter.ExamsViewHolder>(DiffCallback()) {
 
+    // TODO: 27.01.2021 add documentation from #5
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExamsViewHolder {
-        // TODO: 27.01.2021 add documentation from #5
         val binding = ItemExamBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ExamsViewHolder(binding)
     }
@@ -23,7 +24,21 @@ class ExamsAdapter : ListAdapter<Exam, ExamsAdapter.ExamsViewHolder>(DiffCallbac
         holder.bind(currentItem) // bind item at correct position with logic below
     }
 
-    class ExamsViewHolder(private val binding: ItemExamBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ExamsViewHolder(private val binding: ItemExamBinding) : RecyclerView.ViewHolder(binding.root){
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val exam = getItem(position)
+                        listener.onItemClick(exam)
+                    }
+                }
+                // TODO #10 maybe add other items
+                }
+            }
+
 
         // which data should get in which view -> id
         fun bind(exam: Exam) {
@@ -39,6 +54,10 @@ class ExamsAdapter : ListAdapter<Exam, ExamsAdapter.ExamsViewHolder>(DiffCallbac
         }
     }
 
+    interface OnItemClickListener {
+        fun onItemClick(exam: Exam)
+    }
+
     class DiffCallback : DiffUtil.ItemCallback<Exam>() {
         override fun areItemsTheSame(oldItem: Exam, newItem: Exam) = oldItem.id == newItem.id
 
@@ -46,5 +65,4 @@ class ExamsAdapter : ListAdapter<Exam, ExamsAdapter.ExamsViewHolder>(DiffCallbac
             oldItem == newItem // == because data class (which has comparison function)
 
     }
-
 }
