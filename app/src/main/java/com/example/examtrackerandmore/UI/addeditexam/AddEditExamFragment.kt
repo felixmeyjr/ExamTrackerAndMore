@@ -24,8 +24,8 @@ class AddEditExamFragment : Fragment(R.layout.fragment_add_edit_exam) {
         binding.apply {
             editTextExamName.setText(viewModel.examName)
             editTextExamDate.setText(viewModel.examDate)
-            editTextNoLecs.setText(viewModel.numberLecs?.let { Integer.toString(it) })
-            editTextNoTuts.setText(viewModel.numberTuts?.let { Integer.toString(it) })
+            editTextNoLecs.setText(Integer.toString(viewModel.numberLecs))
+            editTextNoTuts.setText(Integer.toString(viewModel.numberTuts))
         }
     }
 }

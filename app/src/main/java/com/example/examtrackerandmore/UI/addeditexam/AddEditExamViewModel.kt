@@ -30,14 +30,13 @@ class AddEditExamViewModel @ViewModelInject constructor(
             state.set("examDate", value)
         }
 
-    // var numberLecs = state.get<Int>("numberLecs") ?: exam?.no_lecs ?: 0 // catch NULL
-    var numberLecs = state.get<Int>("numberLecs")
+    var numberLecs = state.get<Int>("numberLecs") ?: exam?.no_lecs ?: 0 // catch NULL
         set(value) {
             field = value
             state.set("numberLecs", value)
         }
 
-    var numberTuts = state.get<Int>("numberTuts")
+    var numberTuts = state.get<Int>("numberTuts") ?: exam?.no_tuts ?: 0
         set(value) {
             field = value
             state.set("numberTuts", value)
