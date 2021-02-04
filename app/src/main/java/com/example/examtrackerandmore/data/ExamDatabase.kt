@@ -55,8 +55,6 @@ abstract class ExamDatabase : RoomDatabase() {
                     3,
                     4))
             }
-
-
         }
     }
 }
