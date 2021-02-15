@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -77,6 +78,11 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview), ExamsAdapter.O
             }
         }
 
+        setFragmentResultListener("add_edit_request") { _, bundle ->
+            val result = bundle.getInt("add_edit_result")
+            viewModel.onAddEditResult(result)
+        }
+
         viewModel.exams.observe(viewLifecycleOwner) {
             // always sort items by days left to exam
             examAdapter.submitList(it)
@@ -111,6 +117,9 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview), ExamsAdapter.O
                                 "Edit Exam"
                             )
                         findNavController().navigate(action)
+                    }
+                    is ExamViewModel.ExamsEvent.ShowExamSavedConfirmationMessage -> {
+                        Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
                 }.exhaustive
             }

@@ -46,7 +46,7 @@ class ExamsAdapter(private val listener: OnItemClickListener) : ListAdapter<Exam
                 // which data should be put where under what conditions?
                 // define behaviour of inputs
                 textExamName.text = exam.name
-                textDaysToExam.setText(Integer.toString(exam.daysLeft))
+                //textDaysToExam.setText(Integer.toString(exam.daysLeft))
                 textNoLecs.setText(Integer.toString(exam.no_lecs))
                 textNoTuts.setText(Integer.toString(exam.no_tuts))
                 // TODO: 27.01.2021 fix this warning

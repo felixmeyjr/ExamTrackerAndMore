@@ -1,5 +1,6 @@
 package com.example.examtrackerandmore.UI
 
+import android.app.Activity
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,4 +33,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
 }
+
+// avoid clashes with system values
+const val ADD_EXAM_RESULT_OK = Activity.RESULT_FIRST_USER
+const val EDIT_EXAM_RESULT_OK = Activity.RESULT_FIRST_USER + 1

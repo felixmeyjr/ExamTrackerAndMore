@@ -6,6 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.examtrackerandmore.UI.ADD_EXAM_RESULT_OK
+import com.example.examtrackerandmore.UI.EDIT_EXAM_RESULT_OK
 import com.example.examtrackerandmore.data.Exam
 import com.example.examtrackerandmore.data.ExamDataAccessObject
 import com.example.examtrackerandmore.data.PreferencesManager
@@ -61,15 +63,24 @@ class ExamViewModel @ViewModelInject constructor(
         examsEventChannel.send(ExamsEvent.NavigateToAddExamScreen)
     }
 
+    fun onAddEditResult(result: Int) {
+        when (result) {
+            ADD_EXAM_RESULT_OK -> showExamSavedConfirmationMessage("Exam added")
+            EDIT_EXAM_RESULT_OK -> showExamSavedConfirmationMessage("Exam updated")
+        }
+    }
+
+    private fun showExamSavedConfirmationMessage(text: String) = viewModelScope.launch {
+        examsEventChannel.send(ExamsEvent.ShowExamSavedConfirmationMessage(text))
+    }
+
     // Handle events for fragments (snackbar related); Belongs to ExamFragment, ExamEvent and ExamViewModel
     sealed class ExamsEvent {
         object NavigateToAddExamScreen : ExamsEvent()
         data class NavigateToEditExamScreen(val exam: Exam) : ExamsEvent()
         data class ShowUndoDeleteExamMessage(val exam: Exam) : ExamsEvent() // best practice to do this like this
-
+        data class ShowExamSavedConfirmationMessage(val msg: String) : ExamsEvent()
     }
-
-
 }
 
 enum class SortOrder
