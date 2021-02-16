@@ -121,6 +121,10 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview), ExamsAdapter.O
                     is ExamViewModel.ExamsEvent.ShowExamSavedConfirmationMessage -> {
                         Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
+                    ExamViewModel.ExamsEvent.NavigateToDeleteAllScreen -> {
+                        val action = ExamsFragmentDirections.actionGlobalDeleteAllFragment()
+                        findNavController().navigate(action)
+                    }
                 }.exhaustive
             }
         }
@@ -158,7 +162,7 @@ class ExamsFragment : Fragment(R.layout.fragment_exams_overview), ExamsAdapter.O
                 true
             }
             R.id.action_delete_all -> {
-
+                viewModel.onDeleteAllClick()
                 true
             }
             else -> super.onOptionsItemSelected(item)

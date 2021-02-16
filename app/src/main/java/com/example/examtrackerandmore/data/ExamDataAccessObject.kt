@@ -21,6 +21,8 @@ interface ExamDataAccessObject {
     @Delete
     suspend fun delete(exam: Exam)
 
+    @Query("DELETE FROM exam_table")
+    suspend fun deleteExams()
 
 
 

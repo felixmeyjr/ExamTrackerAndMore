@@ -74,12 +74,18 @@ class ExamViewModel @ViewModelInject constructor(
         examsEventChannel.send(ExamsEvent.ShowExamSavedConfirmationMessage(text))
     }
 
+    fun onDeleteAllClick() = viewModelScope.launch {
+        examsEventChannel.send(ExamsEvent.NavigateToDeleteAllScreen)
+    }
+
     // Handle events for fragments (snackbar related); Belongs to ExamFragment, ExamEvent and ExamViewModel
+    // best practice to do this like this
     sealed class ExamsEvent {
         object NavigateToAddExamScreen : ExamsEvent()
         data class NavigateToEditExamScreen(val exam: Exam) : ExamsEvent()
-        data class ShowUndoDeleteExamMessage(val exam: Exam) : ExamsEvent() // best practice to do this like this
+        data class ShowUndoDeleteExamMessage(val exam: Exam) : ExamsEvent()
         data class ShowExamSavedConfirmationMessage(val msg: String) : ExamsEvent()
+        object NavigateToDeleteAllScreen : ExamsEvent()
     }
 }
 
