@@ -24,4 +24,6 @@ data class Exam(
 ) : Parcelable {
     val createDateFormatted: String
         get() = DateFormat.getDateInstance().format(date)
+
+    
 }

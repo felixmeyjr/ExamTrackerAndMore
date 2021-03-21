@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- *
+ * Delete all Context Window
  */
 
 @AndroidEntryPoint

@@ -19,8 +19,3 @@ fun currentDate(): String? {
 
     return current.format(formatter)
 }
-
-fun main() {
-
-}
-
